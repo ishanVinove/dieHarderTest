@@ -1,0 +1,1436 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_mervCoin",
+						"type": "address"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "approved",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Approval",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "approved",
+						"type": "bool"
+					}
+				],
+				"name": "ApprovalForAll",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "lotteryId",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "nftArray",
+						"type": "uint256[]"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					}
+				],
+				"name": "ticketNft",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "numTokens",
+						"type": "uint256"
+					}
+				],
+				"name": "userTransfer",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "NFTDetails",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_lotteryName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_ticketPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_numOfTicketOnSale",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startDateAndTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_endDateAndTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lotteryDrawDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lotteryDrawTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalDraw",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lotteryNftId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_lotteryId",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_ticketNumber",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "_userBalances",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "approve",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "numTokens",
+						"type": "uint256"
+					}
+				],
+				"name": "burnInvestorTokens",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "changeOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_toAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "coinTransferToUser",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "endInvTimestamp",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fetchLotteryNFT",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "_address",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "_lotteryName",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_ticketPrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_numOfTicketOnSale",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_startDateAndTime",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_endDateAndTime",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_lotteryDrawDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_lotteryDrawTime",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_totalDraw",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_lotteryNftId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "_lotteryId",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_ticketNumber",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Lottery.lotteryBuyerDetail[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fetchUserPurchaseNFT",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "_address",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "_lotteryName",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_ticketPrice",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_numOfTicketOnSale",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_startDateAndTime",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_endDateAndTime",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_lotteryDrawDate",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_lotteryDrawTime",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_totalDraw",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_lotteryNftId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "_lotteryId",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "_ticketNumber",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Lottery.lotteryBuyerDetail[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "getApproved",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "invPeter",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "invRon",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_invBal",
+						"type": "address"
+					}
+				],
+				"name": "investorBal",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "numTokens",
+						"type": "uint256"
+					}
+				],
+				"name": "investorMervTransfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					}
+				],
+				"name": "isApprovedForAll",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "mervTokens",
+						"type": "uint256"
+					}
+				],
+				"name": "jackpotMervTransfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "lotteryTicketholder",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "maxInvestToken",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_lotteryName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_ticketPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_ticketTotalPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_numOfTicketpurchase",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startDateAndTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_endDateAndTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lotteryDrawDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lotteryDrawTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_totalDraw",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_lotteryId",
+						"type": "string"
+					}
+				],
+				"name": "mintLotteryTicket",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "ownerOf",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "peterCoin_",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"name": "peterMervTransfer",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_lotteryId",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_initialTab",
+						"type": "uint256[]"
+					}
+				],
+				"name": "randomNumbersGenerate",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ronCoin_",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"name": "ronMervTransfer",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "safeTransferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "safeTransferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "approved",
+						"type": "bool"
+					}
+				],
+				"name": "setApprovalForAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_startInvTimestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_endInvTimestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_maxToken",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenPrice",
+						"type": "uint256"
+					}
+				],
+				"name": "setInvStartEndTime",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "startInvTimestamp",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "tokenPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "tokenURI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amt",
+						"type": "uint256"
+					}
+				],
+				"name": "transferFund",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userBal",
+						"type": "address"
+					}
+				],
+				"name": "userBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "userByLotteryId",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_lotteryId",
+						"type": "string"
+					}
+				],
+				"name": "userLotteryId",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "_user",
+								"type": "address"
+							}
+						],
+						"internalType": "struct Lottery.userPurchasedLottery[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "numTokens",
+						"type": "uint256"
+					}
+				],
+				"name": "userMervTransfer",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_toAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "userWalletBalMinus",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"events": {
+				"Approval(address,address,uint256)": {
+					"details": "Emitted when `owner` enables `approved` to manage the `tokenId` token."
+				},
+				"ApprovalForAll(address,address,bool)": {
+					"details": "Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets."
+				},
+				"Transfer(address,address,uint256)": {
+					"details": "Emitted when `tokenId` token is transferred from `from` to `to`."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"approve(address,uint256)": {
+					"details": "See {IERC721-approve}."
+				},
+				"balanceOf(address)": {
+					"details": "See {IERC721-balanceOf}."
+				},
+				"getApproved(uint256)": {
+					"details": "See {IERC721-getApproved}."
+				},
+				"isApprovedForAll(address,address)": {
+					"details": "See {IERC721-isApprovedForAll}."
+				},
+				"name()": {
+					"details": "See {IERC721Metadata-name}."
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"ownerOf(uint256)": {
+					"details": "See {IERC721-ownerOf}."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+				},
+				"safeTransferFrom(address,address,uint256)": {
+					"details": "See {IERC721-safeTransferFrom}."
+				},
+				"safeTransferFrom(address,address,uint256,bytes)": {
+					"details": "See {IERC721-safeTransferFrom}."
+				},
+				"setApprovalForAll(address,bool)": {
+					"details": "See {IERC721-setApprovalForAll}."
+				},
+				"supportsInterface(bytes4)": {
+					"details": "See {IERC165-supportsInterface}."
+				},
+				"symbol()": {
+					"details": "See {IERC721Metadata-symbol}."
+				},
+				"tokenURI(uint256)": {
+					"details": "See {IERC721Metadata-tokenURI}."
+				},
+				"transferFrom(address,address,uint256)": {
+					"details": "See {IERC721-transferFrom}."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Lottery-SmartContracts/Lottery.sol": "Lottery"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Lottery-SmartContracts/Counters.sol": {
+			"keccak256": "0x1fd7a387861f1c55dae0cc3c4986e93942e3de7335e5e4797cf456bb8800f72c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b1f651a4c252c2d9d2e3850f8265514b020a96ac7d57c7779c9add7cfc95c6be",
+				"dweb:/ipfs/QmeUT4AmXu9vv4Xd2kcEET8oKcjExnDvAvXZA7nT9iqtdJ"
+			]
+		},
+		"contracts/Lottery-SmartContracts/ERC165.sol": {
+			"keccak256": "0x7e0eba63287036b99e47b1aeb7367a38c5574663ed2183ad05853396031013a0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://12c3f5209d9383be977418c9c0152c7674a36a6d351b3382fba966c445d99f46",
+				"dweb:/ipfs/QmauF9DyMooBWNwvhcvLVX6P2gEKAqL2VuksrsAPXYqF9u"
+			]
+		},
+		"contracts/Lottery-SmartContracts/ERC721.sol": {
+			"keccak256": "0xf1d6a2aa6560d493641a903f5b4a46a3bb98e8d29e7cdb75febbcf7e67c7d15e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a93043523175b6d82ac3f2d3a623becc747606dc18037acc697da666dc82d142",
+				"dweb:/ipfs/QmReY3to1pquja9xcCzEbtxUouZBydLXJjHNCGciowCiti"
+			]
+		},
+		"contracts/Lottery-SmartContracts/IERC165.sol": {
+			"keccak256": "0x99237bef241aae2b32797d583be97dfd9faa3e54b9e3144fba3119e6e586500e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://63d25ecfe3dbaa678772c72ce740bfcdf9abc3ecac578ebd6bd7d9398406a073",
+				"dweb:/ipfs/QmaymVtKxPHS2HJt7vp16y1vZoZvw1UqRvRm7atiNWtF3h"
+			]
+		},
+		"contracts/Lottery-SmartContracts/IERC721.sol": {
+			"keccak256": "0xe4c9aec1f8887c895c532466708751c5a2db99ac8abe61035ae6617d53589c8d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f46bfe88333c053cc2e515e5f09faec83be135e00bd4a5a7c26c804cd72586be",
+				"dweb:/ipfs/QmNqHvxH84saLVfPEAKoMa93tc48fWMu6nkoXd5TBS1CWy"
+			]
+		},
+		"contracts/Lottery-SmartContracts/IERC721Metadata.sol": {
+			"keccak256": "0x7712068a497ee465b38d3a38457ee18464e9b4dadfeb1e3a11a15431f51c265e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://546afe4e696e6b3bf141fb01f13861885a8bf2c9d576661797e2a2f26fdca3c7",
+				"dweb:/ipfs/QmNn7qNKNVbvZBCnbiQV9XPoFE4Fu47PnamgenZ2PfetwH"
+			]
+		},
+		"contracts/Lottery-SmartContracts/IERC721Receiver.sol": {
+			"keccak256": "0x6c915e9d1e5252a7fb820b9768080a3ac349019fa06c66936d9b28eabe649854",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0a25c83af51b17a98613eed2ba14bbc9adc84704a474a33251f33a018cc60bb3",
+				"dweb:/ipfs/Qme83fjh8vjnofvXutH4SeVqsmnDnqsmTs1kqQtzHRriXY"
+			]
+		},
+		"contracts/Lottery-SmartContracts/Lottery.sol": {
+			"keccak256": "0xc150ef928952c65fdf741d2efa5db92edec5f42cd7841a0bfcb5d88820cec9de",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://abd3d227dcb58f5449e83969aa4a9984861aad0fd1984af07a149b8645dd63d8",
+				"dweb:/ipfs/QmZ9SZRnt83UJe41jEpDMFVNoRN8CJSqKrrGaGH9UL6CoG"
+			]
+		},
+		"contracts/Lottery-SmartContracts/MervCoin.sol": {
+			"keccak256": "0x9856b9fba2bcd8c2601a46cf8d5f237e0f23de1a4d5cd4bfaf92ba03cf329b9a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5dff94a7f43b4c7e9fe3a245ac542fded829c8a14f1c8e5e345bbbdfa13f86a9",
+				"dweb:/ipfs/QmdqgqKKQ6Vu6s4XbkwWJLYk8vSSjjzESrrhJ1R5stch1H"
+			]
+		},
+		"contracts/Lottery-SmartContracts/Ownable.sol": {
+			"keccak256": "0xdcb8460bf62d2c969ac6fd4643cec67f4eb08b33afb8272d28a5ed55dc38b9a7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://64ab18539ce6c9bcb7e5d34249d924081c11331c51816c55f8d6cfd7d3e9fa22",
+				"dweb:/ipfs/QmRwM2evG9KuCBkK9TxFSLei6YfmpTtxcaViMNN3m62Lv4"
+			]
+		},
+		"contracts/Lottery-SmartContracts/String.sol": {
+			"keccak256": "0x039b3d1373a1c05e87230b57a066c2f5bacfe83eb09f8f8aaaa067ee52118893",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9bfcd8a96b39ca0b9ee87de8dfb3f58a33b51661c08a50dcb73acff1c9007fb1",
+				"dweb:/ipfs/QmNVXk4s4yrUXVNJ7dpSUygzoqG4aCtJt4mT39daG78NP3"
+			]
+		},
+		"contracts/Lottery-SmartContracts/address.sol": {
+			"keccak256": "0x6fb3e39ff1856e2a1eb8ced9e3da2a17e900aabeccc877cf570d719ae1aff39d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9414f6c5a68d7f3b2659e8e4ffb479d26d5b2f925a92df89a759643c06fec8c0",
+				"dweb:/ipfs/QmXh9AyZPr2KoB7gh2BfA3qdY9Z7jZRHPsJbUKV7PXcrw2"
+			]
+		},
+		"contracts/Lottery-SmartContracts/console.sol": {
+			"keccak256": "0x603e582c7fad20897c8d8acc4a7e2a809e5b265d10340c66efd0540c713a3678",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3094d12070717d1e4e474e62b01e143a58b29dc060648c70159deba1e6becdbd",
+				"dweb:/ipfs/QmYfKeqJnvP7ZdjQboiYERpJ9QU9vpPBxM3grfNsiSGrKB"
+			]
+		},
+		"contracts/Lottery-SmartContracts/context.sol": {
+			"keccak256": "0x609c1c1f3f60013fb179a589a2ed0f1248b2aac1dd6a906535c33e497eb6df74",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://955b6112fa490351a1f8f91479555435b48610aea41dd1ee8b18d114e288c21b",
+				"dweb:/ipfs/Qma1UGeXdaN4C8rBH5FouN67YzYVPnjGeL6cVVkyiMJrQ1"
+			]
+		}
+	},
+	"version": 1
+}

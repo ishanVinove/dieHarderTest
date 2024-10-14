@@ -1,0 +1,46 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "String operations.",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Lottery-SmartContracts/String.sol": "Strings"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Lottery-SmartContracts/String.sol": {
+			"keccak256": "0x039b3d1373a1c05e87230b57a066c2f5bacfe83eb09f8f8aaaa067ee52118893",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9bfcd8a96b39ca0b9ee87de8dfb3f58a33b51661c08a50dcb73acff1c9007fb1",
+				"dweb:/ipfs/QmNVXk4s4yrUXVNJ7dpSUygzoqG4aCtJt4mT39daG78NP3"
+			]
+		}
+	},
+	"version": 1
+}
