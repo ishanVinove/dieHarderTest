@@ -188,8 +188,8 @@ contract MervCoin is IERC20 {
         address buyer,
         uint256 numTokens
     ) public override returns (bool) {
-        require(numTokens <= totalInvestorBal[owner]);
-        require(numTokens <= allowed[owner][msg.sender]);
+        require(numTokens <= totalInvestorBal[owner],'Onwer balance is not enough');
+        require(numTokens <= allowed[owner][msg.sender],"Approval is not set");
         totalInvestorBal[owner] = totalInvestorBal[owner].sub(numTokens);
         allowed[owner][msg.sender] = allowed[owner][msg.sender].sub(numTokens);
         totalInvestorBal[buyer] = totalInvestorBal[buyer].add(numTokens);

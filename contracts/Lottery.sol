@@ -290,6 +290,17 @@ contract Lottery is ERC721, Ownable {
         MervCoin(mervCoin).mervTransferfrom(sender,receiver,mervTokens);
 
         return true;
+    }
+
+    function mervSwapTransfer(address owner, address receiver, uint mervTokens) external payable returns (bool){
+        
+        require(receiver != owner,"Cannot send to yourself");
+        require(receiver != address(0) && owner != address(0),"address zero is not a valid address");
+        require(mervTokens != 0, "Sending amount can't be zero");
+        bool success = MervCoin(mervCoin).investorTransferFrom(owner,receiver,mervTokens);
+        require(success,"Txn failed at swap transfer");
+
+        return true;
     } 
 
     function burnInvestorTokens(uint256 numTokens)

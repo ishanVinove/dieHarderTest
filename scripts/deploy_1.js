@@ -21,3 +21,6 @@ async function main() {
       console.error(error);
       process.exit(1);
     });
+
+
+    // npx hardhat deploy_1.js --network besu
