@@ -99,11 +99,14 @@ const crypto = require('crypto');
 function secureRandomIntFromInterval(min, max) {
   const range = max - min + 1;
   const randomBytes = crypto.randomBytes(4);
-  const randomInt = randomBytes.readUInt32BE(0);
+  let randomInt = randomBytes.readUInt32BE(0);
+
+  // Generate an XOR mask and apply it to the random integer
+  const xorMask = crypto.randomBytes(4).readUInt32BE(0);
+  randomInt = (randomInt ^ xorMask) >>> 0;
 
   return min + (randomInt % range);
 }
-
 // Function to write random numbers in smaller increments
 function writeRandomNumbersIncrementally(filename, totalNumValues, min, max, incrementSize = 100_000) {
   let totalWritten = 0;
