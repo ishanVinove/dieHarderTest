@@ -14,7 +14,7 @@ function generateMaskedRandomBall() {
   const randomIndex = randomBytes.readUInt32BE(0) % TOTAL_BALLS;
   const dynamicXorMask = crypto.randomBytes(1).readUInt8(0); // Generate a new mask each time
   const maskedBall = ((randomIndex + 1) ^ dynamicXorMask) >>> 0; // XOR with dynamic mask
-  return maskedBall;
+  return maskedBall % (1 << BITS_PER_BALL);;
 }
 
 // Function to generate and write packed masked random balls incrementally to the file
