@@ -79,8 +79,6 @@
 
 
 
-
-
 const fs = require('fs');
 const crypto = require('crypto');
 
@@ -91,14 +89,12 @@ const BATCH_SIZE = 100_000; // Number of balls to process in each batch
 const BITS_PER_BALL = 3; // We need 3 bits to store numbers 1 through 7
 const BALLS_PER_UINT32 = Math.floor(32 / BITS_PER_BALL); // Number of balls per 32-bit integer
 
-// Generate a secure random mask using 4 random bytes
-const xorMask = crypto.randomBytes(4).readUInt32BE(0);
-
-// Function to generate a secure random number between 1 and TOTAL_BALLS, applying XOR mask for added entropy
+// Function to generate a secure random number between 1 and TOTAL_BALLS, with dynamic XOR mask for each ball
 function generateMaskedRandomBall() {
   const randomBytes = crypto.randomBytes(4);
   const randomIndex = randomBytes.readUInt32BE(0) % TOTAL_BALLS;
-  const maskedBall = ((randomIndex + 1) ^ xorMask) >>> 0; // XOR with mask
+  const dynamicXorMask = crypto.randomBytes(1).readUInt8(0); // Generate a new mask each time
+  const maskedBall = ((randomIndex + 1) ^ dynamicXorMask) >>> 0; // XOR with dynamic mask
   return maskedBall;
 }
 
@@ -108,14 +104,14 @@ async function generateRandomBalls() {
 
   for (let batchStart = 0; batchStart < NUMBER_OF_GENERATIONS; batchStart += BATCH_SIZE) {
     const currentBatchSize = Math.min(BATCH_SIZE, NUMBER_OF_GENERATIONS - batchStart);
-    const packedBuffer = Buffer.alloc(Math.ceil((currentBatchSize * BITS_PER_BALL) / 8)); // Adjust buffer size
+    const packedBuffer = Buffer.alloc(Math.ceil((currentBatchSize * BITS_PER_BALL) / 8)); 
 
     let bitOffset = 0;
 
     for (let i = 0; i < currentBatchSize; i++) {
       const maskedRandomBall = generateMaskedRandomBall();
       
-      // Shift the masked ball value into its position in the 32-bit packed integer
+      // Shift the masked ball value into its position in the packed buffer
       const byteIndex = Math.floor(bitOffset / 8);
       const bitIndex = bitOffset % 8;
 
@@ -130,7 +126,6 @@ async function generateRandomBalls() {
     console.log(`Processed ${batchStart + currentBatchSize} of ${NUMBER_OF_GENERATIONS} packed random balls...`);
   }
 
-  // Close the file stream after writing all data
   fileStream.end(() => {
     console.log(`Generated ${NUMBER_OF_GENERATIONS} packed random balls and saved to ${OUTPUT_FILE}`);
   });
@@ -138,3 +133,4 @@ async function generateRandomBalls() {
 
 // Call the function to generate the packed random balls
 generateRandomBalls().catch(console.error);
+
