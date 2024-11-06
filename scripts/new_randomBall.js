@@ -12,7 +12,7 @@ const BALLS_PER_UINT32 = Math.floor(32 / BITS_PER_BALL); // Number of balls per 
 function generateMaskedRandomBall() {
   const randomBytes = crypto.randomBytes(4);
   const randomIndex = randomBytes.readUInt32BE(0) % TOTAL_BALLS;
-  const dynamicXorMask = crypto.randomBytes(1).readUInt8(0); // Generate a new mask each time
+  const dynamicXorMask = crypto.randomBytes(4).readUInt32BE(0); // Generate a new mask each time
   const maskedBall = ((randomIndex + 1) ^ dynamicXorMask) >>> 0; // XOR with dynamic mask
   return maskedBall % (1 << BITS_PER_BALL);;
 }
