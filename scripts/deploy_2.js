@@ -5,7 +5,7 @@ async function main() {
       console.log("Deploying contracts with the account:", deployer.address);
     
       const Lottery = await ethers.getContractFactory("Lottery");
-      const lottery = await Lottery.deploy("0xb9A219631Aed55eBC3D998f17C3840B7eC39C0cc");
+      const lottery = await Lottery.deploy("0xA9F8FeF0B3DF9159F1443427dAa79210fCEB009C");
       // await lottery.waitForDeployment();
   
       

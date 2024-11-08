@@ -4,7 +4,7 @@ import "./ERC721.sol";
 // import "./ERC721Burnable.sol";
 import "./Ownable.sol";
 import "./Counters.sol";
-import "./MervCoin.sol";
+import "./G2F.sol";
 
 contract Lottery is ERC721, Ownable {
     using Counters for Counters.Counter;
@@ -14,7 +14,7 @@ contract Lottery is ERC721, Ownable {
     uint256 public endInvTimestamp;
     uint256 public maxInvestToken;
     uint256 public tokenPrice;
-    address private mervCoin;
+    address private g2f;
     uint256 public peterCoin_;
     uint256 public ronCoin_;
     bool public invPeter=true;
@@ -48,9 +48,9 @@ contract Lottery is ERC721, Ownable {
         uint256 _ticketNumber;
     }
 
-    constructor(address _mervCoin) payable ERC721("MERVCF Coin", "MERVCF") {
+    constructor(address _g2f) payable ERC721("G2F Coin", "G2F") {
         admin = payable(msg.sender);
-        mervCoin = _mervCoin;
+        g2f = _g2f;
         peterCoin_ = 50000000;
         ronCoin_ = 50000000;
     }
@@ -158,32 +158,63 @@ contract Lottery is ERC721, Ownable {
         return items;
     }
 
+    // function randomNumbersGenerate(
+    //     string memory _lotteryId,
+    //     uint256[] memory _initialTab
+    // ) external view returns (uint256[] memory) {
+    //     uint256 p = _initialTab.length;
+    //     uint256 k = _initialTab.length;
+    //     //generate random number
+    //     // be aware that block.timestamp can be alter by miners.
+    //     for (uint256 i = 0; i < k; i++) {
+    //         uint256 randNum = (uint256(
+    //             keccak256(
+    //                 abi.encodePacked(
+    //                     block.timestamp,
+    //                     _lotteryId,
+    //                     _initialTab[i]
+    //                 )
+    //             )
+    //         ) % p) + 1;
+    //         uint256 tmp = _initialTab[randNum - 1];
+    //         _initialTab[randNum - 1] = _initialTab[p - 1];
+    //         _initialTab[p - 1] = tmp;
+    //         p = p - 1;
+    //     }
+    //     uint256[] memory res;
+    //     res = _initialTab;
+    //     return res;
+    // }
+
     function randomNumbersGenerate(
         string memory _lotteryId,
         uint256[] memory _initialTab
     ) external view returns (uint256[] memory) {
         uint256 p = _initialTab.length;
         uint256 k = _initialTab.length;
-        //generate random number
-        // be aware that block.timestamp can be alter by miners.
+
+        // Improve randomness by combining blockhash, block difficulty, and additional elements
         for (uint256 i = 0; i < k; i++) {
             uint256 randNum = (uint256(
                 keccak256(
                     abi.encodePacked(
-                        block.timestamp,
+                        blockhash(block.number - 1), // More secure than block.timestamp
+                        block.difficulty,            // Adds more entropy
                         _lotteryId,
-                        _initialTab[i]
+                        _initialTab[i],
+                        msg.sender                   // Adds sender's address for uniqueness
                     )
                 )
             ) % p) + 1;
+
+            // Shuffle elements
             uint256 tmp = _initialTab[randNum - 1];
             _initialTab[randNum - 1] = _initialTab[p - 1];
             _initialTab[p - 1] = tmp;
             p = p - 1;
         }
-        uint256[] memory res;
-        res = _initialTab;
-        return res;
+
+        return _initialTab;
     }
 
     function coinTransferToUser(address _toAddress, uint256 _amount)
@@ -228,7 +259,7 @@ contract Lottery is ERC721, Ownable {
 
     function investorBal(address _invBal) external view returns (uint256) {
         require(_invBal != address(0), "Invalid investor balance address");
-        return MervCoin(mervCoin).investorCoin(_invBal);
+        return G2F(g2f).investorCoin(_invBal);
     }
 
     function setInvStartEndTime(
@@ -277,7 +308,7 @@ contract Lottery is ERC721, Ownable {
         );
         // _userBalances[receiver] = _userBalances[receiver] - totalTknPrice;
         // _userBalances[admin] = _userBalances[admin] + totalTknPrice;
-        MervCoin(mervCoin).investorTransferFrom(admin, receiver, totalTknPrice);
+        G2F(g2f).investorTransferFrom(admin, receiver, totalTknPrice);
         emit Transfer(admin, receiver, numTokens);
         return true;
     }   
@@ -287,7 +318,7 @@ contract Lottery is ERC721, Ownable {
         require(receiver != sender,"Cannot send to yourself");
         require(receiver != address(0) && sender != address(0),"address zero is not a valid address");
         require(mervTokens != 0, "Sending amount can't be zero");
-        MervCoin(mervCoin).mervTransferfrom(sender,receiver,mervTokens);
+        G2F(g2f).mervTransferfrom(sender,receiver,mervTokens);
 
         return true;
     }
@@ -297,7 +328,7 @@ contract Lottery is ERC721, Ownable {
         require(receiver != owner,"Cannot send to yourself");
         require(receiver != address(0) && owner != address(0),"address zero is not a valid address");
         require(mervTokens != 0, "Sending amount can't be zero");
-        bool success = MervCoin(mervCoin).investorTransferFrom(owner,receiver,mervTokens);
+        bool success = G2F(g2f).investorTransferFrom(owner,receiver,mervTokens);
         require(success,"Txn failed at swap transfer");
 
         return true;
@@ -325,7 +356,7 @@ contract Lottery is ERC721, Ownable {
             numTokens <= maxInvestToken,
             "Investor token purchase limit excessed"
         );
-        MervCoin(mervCoin).burnInvestorToken(admin, numTokens);
+        G2F(g2f).burnInvestorToken(admin, numTokens);
         return true;
     }
 
@@ -336,7 +367,7 @@ contract Lottery is ERC721, Ownable {
     {
         require(admin != receiver, "Sender and receiver are not equal");
         require(msg.sender == receiver || msg.sender == admin, "Only Receiver can be received coin");
-        MervCoin(mervCoin).userTransferFrom(admin, receiver, numTokens);
+        G2F(g2f).userTransferFrom(admin, receiver, numTokens);
         emit Transfer(admin, receiver, numTokens);
     return true; 
     }
@@ -346,7 +377,7 @@ contract Lottery is ERC721, Ownable {
         payable
     {
         require(admin != receiver, "Sender and receiver are not equal");
-        MervCoin(mervCoin).investorTransferFrom(admin, receiver, peterCoin_);
+        G2F(g2f).investorTransferFrom(admin, receiver, peterCoin_);
         invPeter=true;
     }
 
@@ -355,7 +386,7 @@ contract Lottery is ERC721, Ownable {
         payable
     {
         require(admin != receiver, "Sender and receiver are not equal");
-        MervCoin(mervCoin).investorTransferFrom(admin, receiver, ronCoin_);
+        G2F(g2f).investorTransferFrom(admin, receiver, ronCoin_);
         invRon=true;
     }
 }

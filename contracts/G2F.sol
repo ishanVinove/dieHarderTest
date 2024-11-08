@@ -63,7 +63,7 @@ library SafeMath {
     }
 }
 
-contract MervCoin is IERC20 {
+contract G2F is IERC20 {
     using SafeMath for uint256;
 
     string public name;

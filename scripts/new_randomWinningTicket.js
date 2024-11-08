@@ -45,7 +45,7 @@ function writeRandomNumbersIncrementally(filename, totalNumValues, min, max, inc
 // Number of total random values to generate
 const totalNumValues = 100_000_000;
 const min = 1;
-const max = 150_000;
+const max = 100294967300;
 
 // Run the function with smaller increment size
 writeRandomNumbersIncrementally('large_random_bitstream.bin', totalNumValues, min, max);

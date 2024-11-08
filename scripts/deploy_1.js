@@ -4,12 +4,12 @@ async function main() {
   
     console.log("Deploying contracts with the account:", deployer.address);
   
-    const MervCoin = await ethers.getContractFactory("MervCoin");
-    const mervCoin = await MervCoin.deploy();
-    // await mervCoin.waitForDeployment();
+    const G2F = await ethers.getContractFactory("G2F");
+    const g2f = await G2F.deploy();
+    // await G2F.waitForDeployment();
 
     
-    console.log("MervCoin contract deployed to:", await mervCoin.getAddress());
+    console.log("G2F contract deployed to:", await g2f.getAddress());
     }catch(error){
       console.log(error);
     }
