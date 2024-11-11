@@ -13,7 +13,7 @@ function generateXorMask() {
   return crypto.randomBytes(4).readUInt32BE(0);
 }
 
-// Function to test randomness and write data to file in a bitstream format
+// Function to test randomness and write data to file in binary format
 const testRandomness = async () => {
   const lotteryId = 'test_lottery';
   const initialTab = Array.from({ length: 1000 }, (_, i) => i + 1);
@@ -24,14 +24,18 @@ const testRandomness = async () => {
     const randomNumbers = await contract.methods.randomNumbersGenerate(lotteryId, initialTab).call();
     console.log(`Generating random numbers, iteration: ${i + 1}`);
 
-    // Apply XOR mask and convert each random number to a 4-byte binary string
-    randomNumbers.forEach((num) => {
+    const buffer = Buffer.alloc(randomNumbers.length * 4); // 4 bytes per 32-bit integer
+
+    randomNumbers.forEach((num, index) => {
       const xorMask = generateXorMask();
       const maskedNum = (num ^ xorMask) >>> 0;
 
-      const binaryString = maskedNum.toString(2).padStart(32, '0'); 
-      fileStream.write(binaryString, 'binary'); 
+      // Write the masked 32-bit integer directly to the buffer
+      buffer.writeUInt32BE(maskedNum, index * 4);
     });
+
+    // Write the buffer to the file
+    fileStream.write(buffer);
 
     if ((i + 1) % BATCH_SIZE === 0) {
       console.log(`Saved ${i + 1} batches of random numbers to file...`);
