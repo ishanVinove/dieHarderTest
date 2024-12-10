@@ -3,6 +3,11 @@ const crypto = require('crypto');
 
 // Function to generate a secure random number within a specified range with a dynamic XOR mask
 function secureRandomIntFromInterval(min, max) {
+
+  if (max > 4294967295) {
+    throw new Error('The max value exceeds the range for a 32-bit unsigned integer (4294967295).');
+  }
+
   const range = max - min + 1;
   const randomBytes = crypto.randomBytes(4);
   let randomInt = randomBytes.readUInt32BE(0);
@@ -43,9 +48,9 @@ function writeRandomNumbersIncrementally(filename, totalNumValues, min, max, inc
 }
 
 // Number of total random values to generate
-const totalNumValues = 100_000_000;
+const totalNumValues = 100_000_000; //32_500_000
 const min = 1;
-const max = 100294967300;
+const max = 4294967295;
 
 // Run the function with smaller increment size
 writeRandomNumbersIncrementally('large_random_bitstream.bin', totalNumValues, min, max);
